@@ -370,23 +370,55 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 ### Unfrozen: I changed the last Dense layer for binary classification and tuned the entire architecture on the dataset
 
 1. ResNet18: This large model has the fastest training time but lowest test accuracy
+   a. Number of epochs: 5
+   b. GPU time for training: 134.96 seconds 
 
 ![resnet18_frozen](images/large_models/unfrozen/resnet18_all_layers_5epochs.png)
 ![resnet18_frozen](images/large_models/unfrozen/ResNet18_5epochs_confusion_matrix.png)
 ![resnet18_frozen](images/large_models/unfrozen/ResNet18_5epochs_roc_auc.png)  
    
 2. VGG16: This model had a medium training time and medium test accuracy
+   a. Number of epochs: 9
+   b. GPU time for training: 767.62 seconds
 
 ![vgg16_frozen](images/large_models/unfrozen/vgg16_unfrozen_9epochs_ver2.png)
 ![vgg16_frozen](images/large_models/unfrozen/VGG16_9epochs_ver2_confusion_matrix.png)
 ![vgg16_frozen](images/large_models/unfrozen/VGG16_9epochs_ver2_roc_auc.png)
    
 3. VGG19: This model had the highest training time and highest test accuracy. The False Negatives are zero in this particular train-val-test split.
+   a. Number of epochs: 9
+   b. GPU time for training: 845.42 seconds
 
 ![vgg19_frozen](images/large_models/unfrozen/vgg19_all_layers_9epochs_ver2.png)
 ![vgg19_frozen](images/large_models/unfrozen/VGG19_9epochs_ver2_confusion_matrix.png)
 ![vgg19_frozen](images/large_models/unfrozen/VGG19_9epochs_ver2_roc_auc.png)
 
+### Since the task is medical diagnostics, we want ensure that all samples of glomerulus that are globally sclerotic are classified as positive.
+### Hence, The VGG19 unfrozen trained model for 9 epochs is considered to be the best model because it has False Negatives = 0 on the test set, with the least number of False Positives = 3.
+
+### Important: Since the unfrozen models start fitting the data after very few epochs, you need to use trial and error with the number of epochs, or checkpointing and early stopping, to get an equivalent high accuracy.
+
+## Wrong Predictions (or classifications) for unfrozen Large models
+
+1. RESNET18
+![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction1.png)
+![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction2.png)
+![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction3.png)
+![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction4.png)
+![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction5.png)
+
+3. VGG16
+
+![vgg16_wrong](images/Wrong_Predictions/vgg16/vgg16wrongprediction1.png)
+![vgg16_wrong](images/Wrong_Predictions/vgg16/vgg16wrongprediction2.png)
+![vgg16_wrong](images/Wrong_Predictions/vgg16/vgg16wrongprediction3.png)
+![vgg16_wrong](images/Wrong_Predictions/vgg16/vgg16wrongprediction4.png)
+
+4. VGG19
+
+![vgg19_wrong](images/Wrong_Predictions/vgg19/vgg19wrongprediction1.png)
+![vgg19_wrong](images/Wrong_Predictions/vgg19/vgg19wrongprediction2.png)
+![vgg19_wrong](images/Wrong_Predictions/vgg19/vgg19wrongprediction3.png)
 
 
 ## Instructions for Reproducibility
