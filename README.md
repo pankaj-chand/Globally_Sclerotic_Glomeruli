@@ -123,6 +123,10 @@ Step 2. Replace the largest Dense layer with a Convolutional block
 
 Step 3. Go back to step 1 and repeat until there is no further improvement.
 
+Step 4. Add another Convolutional block to make the model learn  more useful features.
+
+Step 5. Go back to step 1 and repeat until there is no further improvement.
+
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/43e71896-77a6-4cb4-b71c-482d840827f4)
 ![model2](images/baseline_models/Model2.png)
 #### One Large Dense Hidden Layer (49152 = 128x128x3)
@@ -140,6 +144,17 @@ Since the architecture was not able to learn enough, I added a CNN layer.
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/405b1e74-6c7f-44e7-b39d-580afdbdf3d4)
 ![model5](images/baseline_models/Model5.png)
 #### One CNN Layer and Two Large Dense Hidden Layers (49152 = 128x128x3)
+
+The model is learning more. So, I added another Dense layer to make it overfit.
+
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/3d7d22be-a45f-4c5a-aec1-3b4467626118)
+![model6](images/baseline_models/Model6.png)
+#### One CNN Layer and Three Dense Hidden Layers (49152 = 128x128x3)
+
+I added another Convolutional layer to make the model learn more features.
+
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/333e018e-5068-43ea-bbbf-3a9a4da4cfb2)
+![model7](images/baseline_models/Model7.png)
 
 
 ## Implementation
