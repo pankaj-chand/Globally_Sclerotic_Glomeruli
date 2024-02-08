@@ -23,13 +23,15 @@ However, since it was mentioned that a hold out set has already been created by 
 
 ## Inspection
 
-Caveat: It is possible that multiple image files in the dataset come from a single patient. This was not mentioned in the instructions nor was it clear from inspecting the dataset. Hence, I treated each image file individually.
+Caveat: It is possible that multiple image files in the dataset come from a single whole slide image or from a single patient or subject. This was not mentioned in the instructions nor was it clear from inspecting the dataset. Hence, I treated each image file individually. However, this most probably led to data leakage. If you can let me know how exactly multiple images can be identified to belong to the same subject, then I would need to split the dataset on the subject-level and retrain the models.
 
-I found that the images in the dataset were already cropped as a rectangle to include only the glomerulus.
+### Observations:
 
-Images were of different sizes, and all were not square.
+a. I found that the images in the dataset were already cropped as a rectangle to include only the glomerulus, i.e, the region of interest.
 
-There was an imbalance of more than 1:4 with regard to the Positive:Negative class in the dataset as shown in the following figure.
+b. Images were of different sizes, and all were not square.
+
+c. There was an imbalance of more than 1:4 with regard to the Positive:Negative class in the dataset as shown in the following figure. I would address pnly if required after seeing the performance of the trained models.
 
 ![Imbalanced-Data](images/Imbalanced_Data.png)
 
@@ -37,7 +39,7 @@ There was an imbalance of more than 1:4 with regard to the Positive:Negative cla
 
 (code is in 1_Preprocess_Data folder)
 
-I did not intend to train any Fully convolutional Neural Networks, and other types of networks expect the input images to be of the same size.
+I did not intend to train Fully convolutional Neural Networks, and other types of networks expect the input images to be of the same size.
  
 Hence, I made the images square using: white-padding or zero-padding.
 
@@ -72,6 +74,11 @@ May cause loss of original intensity information, which could be important for c
 In the context of analyzing PAS stained images of kidney glomerulus, the choice between zero padding and white padding should be made based on empirical evaluation and domain knowledge. If the background information in the images is irrelevant or noisy, white padding might be preferred to provide a consistent background for the model to learn from. However, if maintaining the original intensity distribution is crucial for your task, zero padding could be a better choice.
 
 Ultimately, it's recommended to experiment with both padding strategies and evaluate their performance on your specific deep learning task to determine which one works best for your dataset and model architecture.
+
+### Images from the folder 2_WhitePad_OR_ZeroPad
+
+![Imbalanced-Data](images/Imbalanced_Data.png)
+
 
 ## Approach
 
