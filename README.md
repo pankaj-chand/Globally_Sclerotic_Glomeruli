@@ -27,13 +27,15 @@ However, since it was mentioned that a hold out set has already been created by 
 
 Caveat: It is possible that multiple image files in the dataset come from a single whole slide image or from a single patient or subject. This was not mentioned in the instructions nor was it clear from inspecting the dataset. Hence, I treated each image file individually. However, this most probably led to data leakage. If you can let me know how exactly multiple images can be identified to belong to the same subject, then I would need to split the dataset on the subject-level and retrain the models.
 
-### Observations:
+### Dataset:
 
 a. I found that the images in the dataset were already cropped as a rectangle to include only the glomerulus, i.e, the region of interest.
 
 b. Images were of different sizes, and all were not square.
 
-c. There was an imbalance of more than 1:4 with regard to the Positive:Negative class in the dataset as shown in the following figure. I would address pnly if required after seeing the performance of the trained models.
+c. There were 5758 images in the entire dataset.
+
+d. There was an imbalance of more than 1:4 with regard to the Positive:Negative class in the dataset as shown in the following figure. I would address the imbalance only if required after seeing the performance of the trained models.
 
 ![Imbalanced-Data](images/Imbalanced_Data.png)
 
@@ -157,9 +159,42 @@ I added another Convolutional layer to make the model learn more features.
 ![model7](images/baseline_models/Model7.png)
 #### Two CNN Layers (layer 2 has double the filters) and Three Dense Hidden Layers (49152 = 128x128x3) Test result: 96.187 loss: 0.101
 
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/333e018e-5068-43ea-bbbf-3a9a4da4cfb2)
+![model8](images/baseline_models/Model8.png)
+#### To smoothen the accuracy curves, I added Batch Normalization. Test result: 95.494 loss: 0.115
+#### The curves show that Batch Normalization helps the model to learn more on the training data . So, the model is finally overfitting.
+
+
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/333e018e-5068-43ea-bbbf-3a9a4da4cfb2)
+![model9](images/baseline_models/Model9.png)
+#### I added MaxPooling to see if pooling would help. The validation accuracy curves show that MaxPooling was not useful. Test result: 95.147 loss: 0.200
+
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/333e018e-5068-43ea-bbbf-3a9a4da4cfb2)
+![model10](images/baseline_models/Model10.png)
+#### Two CNN Layers (layer 2 has double the filters) and Three Dense Hidden Layers (49152 = 128x128x3) Test result: 94.627 loss: 0.207
+
+
 ## Implementation
 
-Provide details on how the code is organized and structured in the repository. Explain the purpose of each file or directory and how they contribute to the project.
+After December 2023, I do NOT have access to HiperGator.
+So, I am using Google Collab Pro which is limited to 20 GB  of usable RAM.
+Hence, I have not used SVM or PCA on the entire image dataset because these techniques usually require more than 20  GB of RAM for the given dataset.
+I have limited the size of the images to 224x224 pixels
+
+### Data Augmentation
+In the baseline and homemade models, I am using a slight amount of data augmentation using the ImageDataGenerator from the Keras framework to make the model robust and generalizable. The data augmentation techniques are basically:
+
+a. Horizontal Flip
+b. Rotation upto 15 degrees
+c. Width shift upto 10%
+d. Height Shift upto 10%
+
+### TensorFlow
+The baseline and homemade models are coded in TensorFlow Keras because the code is more readable and makes it easier to explain my approach. They use CNN and Dense layers.
+
+### PyTorch
+The large and pretrained models are coded in PyTorch because PyTorch framework usually gives better performance with lower training times.I have tried VGG16, VGG19 and ResNet18, with all layers pretrained on ImageNet and frozen, and all layers pretrained on ImageNet and retrained on the dataset.
+
 
 ## Homemade Models
 
