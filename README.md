@@ -29,7 +29,7 @@ Since the dataset had more than 5000 samples, cross validation was not necessary
 
 ## Inspection
 
-Caveat: It is possible that multiple image files in the dataset come from a single whole slide image or from a single patient or subject. This was not mentioned in the instructions nor was it clear from inspecting the dataset. Hence, I treated each image file individually. However, this most probably led to data leakage. If you can let me know how exactly multiple images can be identified to belong to the same subject, then I would need to split the dataset on the subject-level and retrain the models.
+Caveat: It is possible that multiple image files in the dataset come from a single whole slide image or from a single patient or subject. This was not mentioned in the instructions nor was it clear from inspecting the dataset. Hence, I treated each image file individually. However, this most probably led to data leakage and good results. If you can let me know how exactly multiple images can be identified to belong to the same subject, then I would need to split the dataset on the subject-level and retrain the models.
 
 ### Dataset: PNG colored RGBA images
 
@@ -546,10 +546,14 @@ All the above files need a GPU runtime, and so I have only tried and verified th
 
 ## How did you deal with the imbalanced data?
 
+The results show that the imbalanced nature of the data did not negatively affect the models' ability to make correct classifications. Of course this assumes that each sample image is from a separate subject and whole slide image.
+
+I believe that the dataset was created or increased either by using Data Augmentation or by taking multiple sample images from a single whole slide image or subject. In such a case, there will be data leakage and the models will perform well because they will already have seen data with the same distribution as in the test set.
+
+Again, this was not mentioned in the instructions nor was it clear from inspecting the dataset. Hence, I treated each image file individually. However, this most probably led to data leakage and good results. If you can let me know how exactly multiple images can be grouped by subject or whole slide image, then I would need to split the dataset on the subject-level and retrain the models.
 
 
-
-## My models
+## My trained model files
 
 1. Best (accuracy) model (VGG19) link on Google Drive: https://drive.google.com/file/d/1cxtIapDT08ral7OVUep0DbkCO-Rcb_5n/view?usp=sharing
 
