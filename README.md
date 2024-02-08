@@ -16,6 +16,8 @@ This project focuses on the binary classification of PAS stained microscopy imag
 9. [Instructions for Reproducibility](#instructions-for-reproducibility)
 10. [Results](#results)
 
+IMPORTANT: Only students who have a faculty sponsor can access HiperGator premium resources. Students who are onlhy taking a course that uses HiperGator would have access to limited HiperGator resources. Since I do not have a facuty sponsor nor are any of my current courses using HiperGator, I do not have access to HiperGator. So, I have used only Google Collab Pro. 
+
 ## Test Set
 
 Usually, I would first split the data and set a test set aside until the models were trained.
@@ -37,7 +39,7 @@ c. There was an imbalance of more than 1:4 with regard to the Positive:Negative 
 
 ## Preprocessing
 
-(code is in 1_Preprocess_Data folder)
+### Code is in 1_Preprocess_Data folder
 
 I did not intend to train Fully convolutional Neural Networks, and other types of networks expect the input images to be of the same size.
  
@@ -77,7 +79,7 @@ Ultimately, it's recommended to experiment with both padding strategies and eval
 
 ### Images from the folder 2_WhitePad_OR_ZeroPad
 
-Since I had already built a PyTorch model with the glomerulus images that Sam had kindly given me two weeks back, I trained that same model for 20 epochs each on both the zero-padded and white-padded images, and at dimensions of 128x128 pixels and 224x224 pixels. The following figures show the preliminary results.
+Since I had already built a PyTorch model with the glomerulus images that Sam had kindly given me two weeks back, I trained that same model for 20 epochs each on both the zero-padded and white-padded images, and at dimensions of 128x128 pixels and 224x224 pixels. I have not provided the code of that basic preliminary model, but I may be willing to provide it in a sequel. The following figures show the preliminary results.
 
 Zero padding 128x128 pixels
 ![zero-padding_128x128_20 epochs](2_WhitePad_OR_ZeroPad/ZeroPad_128_20_graphs.png)
@@ -95,12 +97,21 @@ White padding 224x224 pixels
 ![white-padding_224x224_20 epochs](2_WhitePad_OR_ZeroPad/WhitePad_224_20_graphs.png)
 ![white-padding_224x224_20 epochs_cm](2_WhitePad_OR_ZeroPad/WhitePad_224_20_confusion_matrix.png)
 
+Conclusion: Except for the sudden dip in the middle of the last validation curve, I found that the white padding provided more stable training and validation curves. Hence, I decided to continue using only the White-Padded version of pre-processed images.
 
+Since I am using Google Collab Pro not HiperGator, usable RAM is around 20 GB, and so I decided not to use the 512x512 resized images due to low RAM.
 
+The preliminary results show that 128x128 sized images were providing better results than the 224x224 images. Since I was already getting 97% accuracy with a simple model, I thought there would be no point in using large architectures or pretrained models that prefer 224x224 sized images. However, later I decided to use 224x224 pixel images with the large architectures.
 
 ## Approach
 
+### The experiments, code and model summaries for this section is in the notebook in folder 3_Baseline_Models
+
 I made a baseline model using only one neuron with sigmoid activation function, and no hidden layers. This was basically Logistic Regression, and could only model linear relationships in the data. Yet, it got 90% accuracy on the test set.
+
+#### No Hidden Layers (49152 = 128x128x3)
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/e6e4a4f2-494c-48de-8d4c-f4a2132bc4ed)
+![model1](images/baseline_models/Model1_NoHiddenLayers.png)
 
 Subsequently, I used a simplified version of the approach in the following publication.
 
@@ -111,6 +122,14 @@ Step 1. Repeatedly add a Dense layer until the model overfits.
 Step 2. Replace the largest Dense layer with a Convolutional block
 
 Step 3. Go back to step 1 and repeat until there is no further improvement.
+
+#### One Large Hidden Layer (49152 = 128x128x3)
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/43e71896-77a6-4cb4-b71c-482d840827f4)
+![model2](images/baseline_models/Model2.png)
+
+#### One Small Hidden Layer (49152 = 128x128x3)
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/9c69368f-8217-4331-889a-a92b9e955a30)
+![model3](images/baseline_models/Model3.png)
 
 ## Implementation
 
