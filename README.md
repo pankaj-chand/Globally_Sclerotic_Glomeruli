@@ -278,7 +278,7 @@ We can achieve that by changing the threshold value.
 
                 precision    recall  f1-score   support
 
-Non-Sclerotic        0.99      0.96      0.97       471
+     Non-Sclerotic   0.99      0.96      0.97       471
 
      Sclerotic       0.83      0.95      0.89       106
 
