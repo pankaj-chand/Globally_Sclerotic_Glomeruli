@@ -259,8 +259,8 @@ Reference: https://github.com/christianversloot/machine-learning-articles/blob/m
 
                 precision    recall  f1-score   support
 
-###### Non-Sclerotic            0.98      0.99      0.99       471
-###### Sclerotic                0.94      0.92      0.93       106
+      Non-Sclerotic  0.98      0.99      0.99       471
+      Sclerotic      0.94      0.92      0.93       106
 
       accuracy                           0.98       577
      macro avg       0.96      0.96      0.96       577
