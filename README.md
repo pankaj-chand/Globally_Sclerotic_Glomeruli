@@ -12,7 +12,7 @@ This project focuses on the binary classification of PAS stained microscopy imag
 5. [Approach and baseline models](#approach)
 6. [Implementation](#implementation)
 7. [Homemade CNN models 97+% accuracy](#homemade-models)
-8. [Large Pretrained Models](#large-pretrained-models)
+8. [Large Pretrained Models 99+% accuracy](#large-pretrained-models)
 9. [Instructions for Reproducibility](#instructions-for-reproducibility)
 10. [Results](#results)
 
