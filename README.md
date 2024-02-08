@@ -9,10 +9,12 @@ This project focuses on the binary classification of PAS stained microscopy imag
 2. [Inspection of the data](#inspection)
 3. [Preprocessing of the data](#preprocessing)
 4. [Padding](#white-padding)
-5. [Approach](#approach)
+5. [Approach and baseline models](#approach)
 6. [Implementation](#implementation)
-7. [Instructions for Reproducibility](#instructions-for-reproducibility)
-8. [Results](#results)
+7. [Homemade CNN models 97+% accuracy](#homemade-models)
+8. [Large Pretrained Models](#large-pretrained-models)
+9. [Instructions for Reproducibility](#instructions-for-reproducibility)
+10. [Results](#results)
 
 ## Test Set
 
@@ -46,7 +48,7 @@ My code ensures that the glomerulus in the image is centered in both the Zero pa
 
 I needed to know whether to progress with the resized images containing white-padding or zero-padding.
 
-Zero Padding:
+### Zero Padding:
 
 Advantages:
 Preserves the original intensity distribution of the image.
@@ -57,7 +59,7 @@ Disadvantages:
 May introduce noise or irrelevant information when padding with zeros if the model is sensitive to the background information.
 Could potentially increase computational cost during training and inference due to the larger input size.
 
-White Padding:
+### White Padding:
 
 Advantages:
 Can help to maintain consistent background across images, which could be beneficial if the background carries irrelevant information for your task.
@@ -79,18 +81,21 @@ Subsequently, I used a simplified version of the approach in the following publi
 
 "Convolutional neural networks for classification of Alzheimer's disease: Overview and reproducible evaluation," Junhao Wen, Elina Thibeau-Sutre, Mauricio Diaz-Melo, Jorge Samper-González, Alexandre Routier, Simona Bottani, Didier Dormont, Stanley Durrleman, Ninon Burgos, Olivier Colliot, Medical Image Analysis, Volume 63, 2020, 101694, ISSN 1361-8415.
 
-1. Repeatedly add a Dense layer until the model overfits.
+Step 1. Repeatedly add a Dense layer until the model overfits.
 
-2. Replace the largest Dense layer with a CNN block
+Step 2. Replace the largest Dense layer with a CNN block
 
-3. Go back to step 1 and repeat until there is no further improvement.
+Step 3. Go back to step 1 and repeat until there is no further improvement.
 
 
 ## Implementation
 Provide details on how the code is organized and structured in the repository. Explain the purpose of each file or directory and how they contribute to the project.
 
 
+## Homemade Models
 
+
+## Large Pretrained Models
 
 
 ## Instructions for Reproducibility
