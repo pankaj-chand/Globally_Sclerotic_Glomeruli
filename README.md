@@ -481,6 +481,10 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 
 ## Instructions for Reproducibility
 
+Clone the Github repo
+
+Use Google Collab with GPU runtime
+
 If Github did not uload one of the files correctly, I can re-upload that file but I am not responsible for any issues regarding Github not uploading correctly since I did not choose Github.
 
 ### 1. Preprocess the dataset
