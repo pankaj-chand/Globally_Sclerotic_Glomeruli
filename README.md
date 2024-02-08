@@ -81,19 +81,19 @@ Ultimately, it's recommended to experiment with both padding strategies and eval
 
 Since I had already built a PyTorch model with the glomerulus images that Sam had kindly given me two weeks back, I trained that same model for 20 epochs each on both the zero-padded and white-padded images, and at dimensions of 128x128 pixels and 224x224 pixels. I have not provided the code of that basic preliminary model, but I may be willing to provide it in a sequel. The following figures show the preliminary results.
 
-Zero padding 128x128 pixels
+#### Zero padding 128x128 pixels
 ![zero-padding_128x128_20 epochs](2_WhitePad_OR_ZeroPad/ZeroPad_128_20_graphs.png)
 ![zero-padding_128x128_20 epochs_cm](2_WhitePad_OR_ZeroPad/ZeroPad_128_20_confusion_matrix.png)
 
-White padding 128x128 pixels
+#### White padding 128x128 pixels
 ![white-padding_128x128_20 epochs](2_WhitePad_OR_ZeroPad/WhitePad_128_20_graphs.png)
 ![white-padding_128x128_20 epochs_cm](2_WhitePad_OR_ZeroPad/WhitePad_128_20_confusion_matrix.png)
 
-Zero padding 224x224 pixels
+#### Zero padding 224x224 pixels
 ![zero-padding_224x224_20 epochs](2_WhitePad_OR_ZeroPad/ZeroPad_224_20_graphs.png)
 ![zero-padding_224x224_20 epochs_cm](2_WhitePad_OR_ZeroPad/ZeroPad_224_20_confusion_matrix.png)
 
-White padding 224x224 pixels
+#### White padding 224x224 pixels
 ![white-padding_224x224_20 epochs](2_WhitePad_OR_ZeroPad/WhitePad_224_20_graphs.png)
 ![white-padding_224x224_20 epochs_cm](2_WhitePad_OR_ZeroPad/WhitePad_224_20_confusion_matrix.png)
 
@@ -109,9 +109,9 @@ The preliminary results show that 128x128 sized images were providing better res
 
 I made a baseline model using only one neuron with sigmoid activation function, and no hidden layers. This was basically Logistic Regression, and could only model linear relationships in the data. Yet, it got 90% accuracy on the test set.
 
-#### No Hidden Layers (49152 = 128x128x3)
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/e6e4a4f2-494c-48de-8d4c-f4a2132bc4ed)
 ![model1](images/baseline_models/Model1_NoHiddenLayers.png)
+#### No Hidden Layers (49152 = 128x128x3)
 
 Subsequently, I used a simplified version of the approach in the following publication.
 
@@ -123,13 +123,23 @@ Step 2. Replace the largest Dense layer with a Convolutional block
 
 Step 3. Go back to step 1 and repeat until there is no further improvement.
 
-#### One Large Hidden Layer (49152 = 128x128x3)
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/43e71896-77a6-4cb4-b71c-482d840827f4)
 ![model2](images/baseline_models/Model2.png)
+#### One Large Dense Hidden Layer (49152 = 128x128x3)
 
-#### One Small Hidden Layer (49152 = 128x128x3)
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/9c69368f-8217-4331-889a-a92b9e955a30)
 ![model3](images/baseline_models/Model3.png)
+#### One Small Dense Hidden Layer (49152 = 128x128x3)
+
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/f0343e3f-a801-43cd-92a1-977c444da521)
+![model4](images/baseline_models/Model4.png)
+#### Two Large Dense Hidden Layers (49152 = 128x128x3)
+
+Since the architecture was not able to learn enough, I added a CNN layer
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/405b1e74-6c7f-44e7-b39d-580afdbdf3d4)
+![model5](images/baseline_models/Model5.png)
+#### One CNN Layer and Two Large Dense Hidden Layers (49152 = 128x128x3)
+
 
 ## Implementation
 
