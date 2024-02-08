@@ -481,6 +481,8 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 
 ## Instructions for Reproducibility
 
+If Github did not uload one of the files correctly, I can re-upload that file but I am not responsible for any issues regarding Github not uploading correctly since I did not choose Github.
+
 ### 1. Preprocess the dataset
 
 I have already put the public.zip file on my Google Drive and so you simply need to upload the notebook from 1_Preprocess_Data folder to your Google Collab account and run the cells one by one, with either CPU runtime or GPU runtime.
