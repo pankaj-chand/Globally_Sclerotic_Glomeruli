@@ -171,7 +171,17 @@ I added another Convolutional layer to make the model learn more features.
 
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/333e018e-5068-43ea-bbbf-3a9a4da4cfb2)
 ![model10](images/baseline_models/Model10.png)
-#### Two CNN Layers (layer 2 has double the filters) and Three Dense Hidden Layers (49152 = 128x128x3) Test result: 94.627 loss: 0.207
+#### Instead of MaxPooling, I added Dropout of 20% to regularize the overfitting. Test result: 94.627 loss: 0.207
+
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/21a1ddb8-bfb1-4fb0-997f-49922cad89c1)
+![model11](images/baseline_models/Model11.png)
+#### I removed one Large Dense layer to further reduce overfitting. Test result: 96.534 loss: 0.109
+
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/5cda542a-e943-4a55-a7db-17f075c7ad0c)
+![model12](images/baseline_models/Model12.png)
+#### I added MaxPooling again, and the curve was not very good, although the accuracy improved. Test result: 97.227 loss: 0.090
+
+I concluded that Maxpooling should not be used immediately after the first CNN layer otherwise the model may lose sight of the fine features in microscopy images. Future work would include MaxPooling after 2 or more CNN layers. But then, I realised that I may as well try VGG16 and other large models that use such an architecture.
 
 
 ## Implementation
