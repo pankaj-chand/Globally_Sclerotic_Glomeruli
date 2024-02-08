@@ -440,7 +440,7 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 
      accuracy                            0.99       577
      macro avg       0.99      1.00      0.99       577
-  weighted avg       0.99      0.99      0.99       577
+     weighted avg       0.99      0.99      0.99       577
 
 ### Since the task is medical diagnostics, we want ensure that all samples of glomerulus that are globally sclerotic are classified as positive.
 
@@ -524,11 +524,15 @@ All the above files need a GPU runtime, and so I have only tried and verified th
 
 
 ### Instructions for running evalution.py
+
 #### Important: You need to use the correct trained model parameters (VGG19, VGG16, RESNET18) with correct type of evaluation file. For evaluation.py, you need to use the VGG19 trained model.
 
 #### 1. Upload the following to your Google Collab GPU runtime:
+
  a. evaluation.py file
+ 
  b. Trained model file downloaded from the following link (https://drive.google.com/file/d/1cxtIapDT08ral7OVUep0DbkCO-Rcb_5n/view?usp=sharing)
+ 
  c. Folder_of_images
 
 #### 2. Edit the following lines (111-112) of code in evaluation.py to the correct path to the uploaded model file
@@ -537,6 +541,7 @@ All the above files need a GPU runtime, and so I have only tried and verified th
     Line 112:  model_path = '/content/vgg19_all_layers_9_epochs_ver2.pth'
   
 #### 3. Run the following code in a cell
+
 **!python evaluation.py <Folder_of_images>**
 
 #### 4. Check for the generated evaluation.csv file in the current directory.
