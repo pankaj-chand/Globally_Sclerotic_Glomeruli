@@ -31,9 +31,7 @@ Since the dataset had more than 5000 samples, cross validation was not necessary
 
 Caveat: It is possible that multiple image files in the dataset come from a single whole slide image or from a single patient or subject. This was not mentioned in the instructions nor was it clear from inspecting the dataset. Hence, I treated each image file individually. However, this most probably led to data leakage. If you can let me know how exactly multiple images can be identified to belong to the same subject, then I would need to split the dataset on the subject-level and retrain the models.
 
-### Dataset:
-
-Dataset: PNG colored RGBA images
+### Dataset: PNG colored RGBA images
 
 Non_Globally_Sclerotic: 4704 images
 
@@ -391,30 +389,55 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 
 #### 1. ResNet18: This large model has the fastest training time but lowest test accuracy
    a. Number of epochs: 5
-   b. GPU time for training: 134.96 seconds 
+   b. GPU time for training: 134.96 seconds
+   c. Test Set = 577 samples, False Negatives = 3, False Positives = 2, ROC_CURVE and AUC = 1.00
+   
 
 ![resnet18_frozen](images/large_models/unfrozen/resnet18_all_layers_5epochs.png)
 ![resnet18_frozen](images/large_models/unfrozen/ResNet18_5epochs_confusion_matrix.png)
 ![resnet18_frozen](images/large_models/unfrozen/ResNet18_5epochs_roc_auc.png)  
-   
+
+          precision    recall  f1-score   support
+
+     Non-Sclerotic   0.99      1.00      0.99       471
+     Sclerotic       0.98      0.97      0.98       106
+
+     accuracy                            0.99       577
+     macro avg      0.99      0.98      0.99       577
+     weighted avg   0.99      0.99      0.99       577
+
 #### 2. VGG16: This model had a medium training time and medium test accuracy
    a. Number of epochs: 9
    b. GPU time for training: 767.62 seconds
+   c. Test Set = 577 samples, False Negatives = 1, False Positives = 3, ROC_CURVE and AUC = 1.00
 
 ![vgg16_frozen](images/large_models/unfrozen/vgg16_unfrozen_9epochs_ver2.png)
 ![vgg16_frozen](images/large_models/unfrozen/VGG16_9epochs_ver2_confusion_matrix.png)
 ![vgg16_frozen](images/large_models/unfrozen/VGG16_9epochs_ver2_roc_auc.png)
-   
+
+                   precision    recall  f1-score   support
+
+     Non-Sclerotic   1.00      0.99      1.00       471
+     Sclerotic       0.97      0.99      0.98       106
+
+     accuracy                            0.99       577
+     macro avg       0.99      0.99      0.99       577
+     weighted avg    0.99      0.99      0.99       577
+
 #### 3. VGG19: This model had the highest training time and highest test accuracy. The False Negatives are zero in this particular train-val-test split.
    a. Number of epochs: 9
    b. GPU time for training: 845.42 seconds
-
+   c. Test Set = 577 samples, False Negatives = 0, False Positives = 3, ROC_CURVE and AUC = 1.00
+   
 ![vgg19_frozen](images/large_models/unfrozen/vgg19_all_layers_9epochs_ver2.png)
 ![vgg19_frozen](images/large_models/unfrozen/VGG19_9epochs_ver2_confusion_matrix.png)
 ![vgg19_frozen](images/large_models/unfrozen/VGG19_9epochs_ver2_roc_auc.png)
 
 ### Since the task is medical diagnostics, we want ensure that all samples of glomerulus that are globally sclerotic are classified as positive.
+
 ### Hence, The VGG19 unfrozen trained model for 9 epochs is considered to be the best model because it has False Negatives = 0 on the test set, with the least number of False Positives = 3.
+
+### While F1-score is important, since all three unfrozen models are doing so well, the minimum False Negatives becomes the deciding metric.
 
 ### Important: Since the unfrozen models start fitting the data after very few epochs, you need to use trial and error with the number of epochs, or checkpointing and early stopping, to get an equivalent high accuracy.
 
