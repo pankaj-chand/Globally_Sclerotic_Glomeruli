@@ -156,10 +156,15 @@ Step 5. Go back to step 1 and repeat until there is no further improvement.
 #### Other variables
 
 a. I used 50-60 epochs to give the model time to learn and overfit
+
 b. mini batch size of 64
+
 c. Adam optimizer
+
 d. Learning Rate = 0.0001
+
 e. L2 regularization for the kernel
+
 
 
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/43e71896-77a6-4cb4-b71c-482d840827f4)
@@ -229,16 +234,22 @@ Hence, all the code I have provided are in the form of Google Collab notebooks, 
 
 Minor modifications could be made to make the same files run on HiperGator OOD.
 
-### For Baseine models and Homemade models only
+### For Baseline models and Homemade models only
 
 I have normalized the images using the following code. Note that I have used the same mean computed from the train set for normalizing the validation set and the test set.
 
 #### Normalize the data to speed up training
+
 mean = np.mean(x_train)
+
 std = np.std(x_train)
+
 x_train = (x_train-mean)/(std+1e-7)
+
 x_val = (x_val-mean)/(std+1e-7)
+
 x_test = (x_test-mean)/(std+1e-7)
+
 
 ### Data Augmentation
 In the baseline and homemade models, I am using a slight amount of data augmentation using the ImageDataGenerator from the Keras framework to make the model robust and generalizable. The data augmentation techniques are basically:
