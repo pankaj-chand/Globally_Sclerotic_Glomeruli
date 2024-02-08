@@ -18,10 +18,14 @@ This project focuses on the binary classification of PAS stained microscopy imag
 
 IMPORTANT: Only students who have a faculty sponsor can access HiperGator premium resources. Students who are onlhy taking a course that uses HiperGator would have access to limited HiperGator resources. Since I do not have a facuty sponsor nor are any of my current courses using HiperGator, I do not have access to HiperGator. So, I have used only Google Collab Pro. 
 
-## Test Set
+## Separate Test Set
 
-Usually, I would first split the data and set a test set aside until the models were trained.
-However, since it was mentioned that a hold out set has already been created by Dr. Paul and Dr. Naglah, so I split the data and set my own test set aside in my notebook code after inspecting the data, but before starting to train the models. The data was split pseudo-randomly using five different seeds to repeat the experiments five times and mimic Scikit-Learn's 5-Fold Cross Validation. However, only one of the seeds is given in the code.
+Usually, I would first split the data and set a test set aside before inspecting the data, and until the models were trained.
+However, since it was Dr. Paul wrote that a hold out set of in-distribution data has already been created by Dr. Paul and Dr. Naglah, so I split the available data and created a separate test set aside in my notebook code after inspecting the data, but before starting to train the models.
+
+### Train_Val_Test_Split
+The entire 100% data was train_val_test split in the ratio of 80:10:10 pseudo-randomly using five different seeds to repeat the experiments five times and emulate Scikit-Learn's 5-Fold Cross Validation. However, only one of the seeds is given in the code.
+Since the dataset had more than 5000 samples, cross validation was not necessary since 577 samples in the test set is considered sufficient to test the models performance. Hence, I did not use cross validation and instead tried to emulate it using five random seeds.
 
 ## Inspection
 
@@ -129,6 +133,15 @@ Step 4. Add another Convolutional block to make the model learn  more useful fea
 
 Step 5. Go back to step 1 and repeat until there is no further improvement.
 
+#### Other variables
+
+a. I used 50-60 epochs to give the model time to learn and overfit
+b. mini batch size of 64
+c. Adam optimizer
+d. Learning Rate = 0.0001
+e. L2 regularization for the kernel
+
+
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/43e71896-77a6-4cb4-b71c-482d840827f4)
 ![model2](images/baseline_models/Model2.png)
 #### One Large Dense Hidden Layer (49152 = 128x128x3) Test result: 92.721 loss: 0.224
@@ -189,7 +202,12 @@ I concluded that Maxpooling should not be used immediately after the first CNN l
 After December 2023, I do NOT have access to HiperGator.
 So, I am using Google Collab Pro which is limited to 20 GB  of usable RAM.
 Hence, I have not used SVM or PCA on the entire image dataset because these techniques usually require more than 20  GB of RAM for the given dataset.
-I have limited the size of the images to 224x224 pixels
+I have limited the size of the images to 224x224 pixels.
+
+Additionally, code in Google Collab is usually written in the form of notebooks. Although, I could have written .py files, I had no way to ensure that they would run correcdtly in HiperGator.
+Hence, all the code I have provided are in the form of Google Collab notebooks, and can be run on Google Collab with a GPU instance.
+
+Minor modifications could be made to make the same files run on HiperGator OOD.
 
 ### Data Augmentation
 In the baseline and homemade models, I am using a slight amount of data augmentation using the ImageDataGenerator from the Keras framework to make the model robust and generalizable. The data augmentation techniques are basically:
@@ -203,11 +221,29 @@ d. Height Shift upto 10%
 The baseline and homemade models are coded in TensorFlow Keras because the code is more readable and makes it easier to explain my approach. They use CNN and Dense layers.
 
 ### PyTorch
-The large and pretrained models are coded in PyTorch because PyTorch framework usually gives better performance with lower training times.I have tried VGG16, VGG19 and ResNet18, with all layers pretrained on ImageNet and frozen, and all layers pretrained on ImageNet and retrained on the dataset.
-
+The large and pretrained models are coded in PyTorch because the PyTorch framework usually gives better performance with lower training times.I have tried VGG16, VGG19 and ResNet18, with all layers pretrained on ImageNet and frozen, and all layers pretrained on ImageNet and retrained on the dataset.
 
 ## Homemade Models
 
+Based on what I learned from the baseine models and approach of building a model to get around 97% accuracy, I built two models: one using 128x128 pixels resized images, and the other using 224x224 pixels resized images.
+
+1. Added a CNN layer (now totally 3 CNN layers) to learn more abstract features
+2. Added weight decay to the Adam optimizer
+3. Increased Dropojut to 30%
+4. Reduced the size of Dense layers
+5. Used He Normal initialization for the kernel weights
+
+He initialization When your neural network is ReLU activated, He initialization is one of the methods you can choose to bring the variance of those outputs to approximately one (He et al., 2015).
+
+Although it attempts to do the same, He initialization is different than Xavier initialization (Kumar, 2017; He et al., 2015). This difference is related to the nonlinearities of the ReLU activation function, which make it non-differentiable at [latex]x = 0[/latex]. However, Kumar indeed proves mathematically that for the ReLU activation function, the best weight initialization strategy is to initialize the weights randomly but with this variance:
+
+v^2 = 2/N 
+
+...which is He initialization.
+
+ReLU activating networks, which are pretty much the standard ones today, benefit from the He initializer - which does the same thing, but with a different variance, namely [latex]2/N[/latex].
+
+Reference: https://github.com/christianversloot/machine-learning-articles/blob/main/he-xavier-initialization-activation-functions-choose-wisely.md
 
 ## Large Pretrained Models
 
