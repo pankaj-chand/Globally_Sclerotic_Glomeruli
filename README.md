@@ -302,6 +302,7 @@ Non-Sclerotic        0.99      0.96      0.97       471
 
             precision    recall  f1-score   support
 
+
 Non-Sclerotic        0.98      0.99      0.98       471
 
      Sclerotic       0.94      0.92      0.93       106
@@ -313,13 +314,14 @@ Non-Sclerotic        0.98      0.99      0.98       471
 Since the task is medical diagnostics, we are interested in reducing the False Negatives in a balanced way with the False Positives.
 We can achieve that by changing the threshold value.
 
-#### After changing the threshold to 0.207789, the False Negatives and False Positives are more balanced.
+#### After changing the threshold to 0.173653, the False Negatives are reduced.
 
 ![model12](images/homemade_models/Homemade_Model1_224x224_CM1afteridealthreshold.png)
 
 ##### Improved Metrics
 
      precision    recall  f1-score   support
+
 
 Non-Sclerotic        0.99      0.97      0.98       471
 
