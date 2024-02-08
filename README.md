@@ -253,13 +253,14 @@ Reference: https://github.com/christianversloot/machine-learning-articles/blob/m
 
 #### With a thresold of 0.5 on the value of the sigmoid function
 
-![model12](images/homemade_models/Homemade_Model1_128x128_CM1beforeidealthreshold)
+![model12](images/homemade_models/Homemade_Model1_128x128_CM1beforeidealthreshold.png)
 
 ##### Metrics
 
                precision    recall  f1-score   support
 
 Non-Sclerotic        0.98      0.99      0.99       471
+
      Sclerotic       0.94      0.92      0.93       106
 
       accuracy                           0.98       577
@@ -272,13 +273,14 @@ We can achieve that by changing the threshold value.
 
 #### After changing the threshold to 0.207789, the False Negatives and False Positives are more balanced.
 
-![model12](images/homemade_models/Homemade_Model1_128x128_CM1afteridealthreshold)
+![model12](images/homemade_models/Homemade_Model1_128x128_CM1afteridealthreshold.png)
 
 ##### Improved Metrics
 
                 precision    recall  f1-score   support
 
 Non-Sclerotic        0.99      0.96      0.97       471
+
      Sclerotic       0.83      0.95      0.89       106
 
       accuracy                           0.96       577
@@ -288,20 +290,44 @@ Non-Sclerotic        0.99      0.96      0.97       471
 
 ### Homemade model for 224x224 images
 
-![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/8938f9d0-a226-41de-a19e-401fea219449)
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/5af7d58d-e104-4186-8d32-f1aaf15c8d8d)
 ![model12](images/homemade_models/HomemadeModel1_224x224.png)
 ![model12](images/homemade_models/Homemade_Model1_224x224_roc.png)
 
 #### With a thresold of 0.5 on the value of the sigmoid function
 
-![model12](images/homemade_models/Homemade_Model1_224x224_CM1beforeidealthreshold)
+![model12](images/homemade_models/Homemade_Model1_224x224_CM1beforeidealthreshold.png)
 
+##### Metrics
+
+            precision    recall  f1-score   support
+
+Non-Sclerotic        0.98      0.99      0.98       471
+
+     Sclerotic       0.94      0.92      0.93       106
+
+      accuracy                           0.97       577
+     macro avg       0.96      0.95      0.96       577
+  weighted avg       0.97      0.97      0.97       577
+  
 Since the task is medical diagnostics, we are interested in reducing the False Negatives in a balanced way with the False Positives.
 We can achieve that by changing the threshold value.
 
 #### After changing the threshold to 0.207789, the False Negatives and False Positives are more balanced.
 
-![model12](images/homemade_models/Homemade_Model1_224x224_CM1afteridealthreshold)
+![model12](images/homemade_models/Homemade_Model1_224x224_CM1afteridealthreshold.png)
+
+##### Improved Metrics
+
+     precision    recall  f1-score   support
+
+Non-Sclerotic        0.99      0.97      0.98       471
+
+     Sclerotic       0.89      0.96      0.93       106
+
+      accuracy                           0.97       577
+     macro avg       0.94      0.97      0.96       577
+  weighted avg       0.97      0.97      0.97       577
 
 
 ## Large Pretrained Models
