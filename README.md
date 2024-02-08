@@ -59,6 +59,14 @@ My code ensures that the glomerulus in the image is centered in both the Zero pa
 
 I needed to know whether to progress with the resized images containing white-padding or zero-padding.
 
+I wanted to make the images square to use with different types of models. However, since the kidney glomerulus has structural features, I wanted to keep the original aspect ratio of each image, otherwise it could impact the structural relations in the data.
+
+### Why I chose square dimensions of 128 and 224?
+
+128 is the smallest size that is normally used.
+VGG16 and other pretrained models were trained on 224.
+
+
 ### Zero Padding:
 
 Advantages:
@@ -80,6 +88,14 @@ Disadvantages:
 Risks introducing bias towards white color in the model's learning process, especially if the background of the original images is not white.
 May cause loss of original intensity information, which could be important for certain tasks.
 In the context of analyzing PAS stained images of kidney glomerulus, the choice between zero padding and white padding should be made based on empirical evaluation and domain knowledge. If the background information in the images is irrelevant or noisy, white padding might be preferred to provide a consistent background for the model to learn from. However, if maintaining the original intensity distribution is crucial for your task, zero padding could be a better choice.
+
+In deep learning, it's common to use zero-padding, instead of white-padding, because it introduces minimal bias to the network during training. In many cases, zero-padding is a safe default, especially when the background does not carry critical information.
+
+However, for PAS (Periodic Acid-Schiff) stained histology images, where the color and intensity of the stain are important for features relevant to classification tasks such as detecting sclerotic glomeruli, it is often recommended to use constant-padding with a meaningful color. In this case, white-padding with the value '255' is a common choice.
+
+When working with histology images, it's important to consider the domain-specific characteristics of the images and the impact of preprocessing choices on the information content. Constant-padding with a value that respects the staining characteristics can help maintain the integrity of important features during the padding process.
+
+Hence, I chose to white-pad the images with the value '255' to make all images square before resizing to 128 and 224 pixel dimensions.
 
 Ultimately, it's recommended to experiment with both padding strategies and evaluate their performance on your specific deep learning task to determine which one works best for your dataset and model architecture.
 
@@ -427,11 +443,66 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 
 ## Instructions for Reproducibility
 
-1. Preprocess the dataset ()
-2. 
+### 1. Preprocess the dataset
 
-## Results
-Summarize the results of the classification task. Include metrics such as accuracy, precision, recall, and F1-score, as well as any qualitative observations.
+I have already put the public.zip file on my Google Drive and so you simply need to upload the notebook from 1_Preprocess_Data folder to your Google Collab account and run the cells one by one, with either CPU runtime or GPU runtime.
+
+### 2. Baseline Models
+
+I have already put the preprocessed datasets on my Google Drive and so you simply need to upload the notebook from 3_Baseline_Models folder to your Google Collab account and run the cells one by one with a GPU runtime.
+
+### 3. Homemade Models
+
+Upload the two notebooks from 4_Homemade_Models folder to your Google Collab account and run the cells one by one with a GPU runtime. If you want to preprocess the data using the preprocessing code in Step 1 and replace that with the preprcessed data on my Google Drive, tehn feel free to do that. If you can run code on Google Collab or HiperGator then you should be able to do that by yourself.
+
+### 4. Large Models
+
+Upload the two notebooks from 5_Large_Models folder to your Google Collab account and run the cells one by one with a GPU runtime.
+
+### 5. UnFrozen Models
+
+Upload the follwoing three notebooks from the repository to Google Collab and run them with a GPU runtime.
+
+Resnet18_AllLayers.ipynb
+VGG16_AllLayers.ipynb
+VGG19_AllLayers.ipynb
+
+### 6. Evaluation
+
+There are 4 evaluation files in the repository:
+
+1. evaluation.py (for the best trained model using VGG19 architecture)
+2. evaluation_VGG19.py (for the best trained model using VGG19 architecture. This file is identical to the above evaluation.py file)
+3. evaluation_VGG16.py (for the trained model using VGG16 architecture)
+4. evaluation_resnet18.py (for the trained model using RESNET18 architecture)
+
+All the above files need a GPU runtime, and so I have only tried and verified they work on Google Collab Pro. If you can run code on Google Collab or HiperGator, it should be easy for you to make changes to run these files in either system, but you need to find out the requirements.txt for Hipergator. You need to download tnhe trained model parameters I have provided at the end of this readme.
+
+
+### Instructions for running evalution.py
+#### Important: You need to use the correct trained model parameters (VGG19, VGG16, RESNET18) with correct type of evaluation file. For evaluation.py, you need to use the VGG19 trained model.
+
+1. Upload the following to your Google Collab GPU runtime:
+ a. evaluation.py file
+ b. Trained model file downloaded from the following link (https://drive.google.com/file/d/1cxtIapDT08ral7OVUep0DbkCO-Rcb_5n/view?usp=sharing)
+ c. Folder_of_images
+
+2. Run the following code in a cell
+**!python evaluation.py <Folder_of_images>**
+
+3. 
+
+
+
+
+
+
+
+# Conclusion
+
+## How did you deal with the imbalanced data?
+
+
 
 
 ## My models
