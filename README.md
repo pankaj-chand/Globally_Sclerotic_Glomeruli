@@ -247,6 +247,8 @@ Reference: https://github.com/christianversloot/machine-learning-articles/blob/m
 
 ### Homemade model for 128x128 images
 
+#### Code is in the folder 4_Homemade_Models
+
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/8938f9d0-a226-41de-a19e-401fea219449)
 ![model12](images/homemade_models/HomemadeModel1_128x128.png)
 ![model12](images/homemade_models/Homemade_Model1_128x128_roc.png)
@@ -333,36 +335,52 @@ Non-Sclerotic        0.99      0.97      0.98       471
 
 ## Large Pretrained Models
 
+I trained 3 large models pretrained on ImageNet. 
+
+### Frozen: I changed the last Dense layer for binary classification
+1. ResNet18: This large model has the fastest training time
+
+![resnet18_frozen](images/large_models/frozen/resnet18_frozen_100epochs.png)
+![resnet18_frozen](images/large_models/frozen/ResNet18_frozen_100epochs_confusion_matrix.png)
+![resnet18_frozen](images/large_models/frozen/ResNet18_frozen_100epochs_roc_auc.png)
+
+#### I tried lowering the learning rate but there was not much difference.
+
+Lowered Learning Rate
+![resnet18_frozen](images/large_models/frozen/resnet18_frozen_100epochs_lowerlearningrate.png)
+![resnet18_frozen](images/large_models/frozen/ResNet18_frozen_100epochs_confusion_matrix_lowerlearningrate.png)
+![resnet18_frozen](images/large_models/frozen/ResNet18_frozen_100epochs_roc_auc_lowerlearningrate.png)
+
+
+3. VGG16: This model had a medium training time
+
+![vgg16_frozen](images/large_models/frozen/vgg16frozen50epochs.png)
+![vgg16_frozen](images/large_models/frozen/VGG16_frozen_50epochs_confusion_matrix.png)
+![vgg16_frozen](images/large_models/frozen/VGG16_frozen_50epochs_roc_auc.png)
+
+4. VGG19: This model had the highest training time
+
+![vgg19_frozen](images/large_models/frozen/vgg19frozen50epochs.png)
+![vgg19_frozen](images/large_models/frozen/VGG19_frozen_50epochs_confusion_matrix.png)
+![vgg19_frozen](images/large_models/frozen/VGG19_frozen_50epochs_roc_auc.png)
+
+All 3 frozen models were not able to get up to 95% training accuracy.
+
+### Unfrozen: I changed the last Dense layer for binary classification and tuned the entire architecture on the dataset
+
+1. ResNet18: This large model has the fastest training time
+
+  
+   
+3. VGG16: This model had a medium training time
+   
+4. VGG19: This model had the highest training time
+
 
 ## Instructions for Reproducibility
-Include step-by-step instructions for reproducing the results of the project. This should cover environment setup, data preprocessing, model training, and evaluation.
 
-1. **Clone the repository:**
-
-git clone https://github.com/yourusername/your-repository.git
-cd your-repository
-
-
-2. **Install dependencies:**
-
-pip install -r requirements.txt
-
-
-3. **Prepare the data:**
-
-Download the dataset and place it in the 'data/' directory
-Preprocess the data if necessary
-
-
-4. **Train the model:**
-
-python train.py --data_path data/train --epochs 50 --batch_size 32
-
-
-5. **Evaluate the model:**
-
-python evaluate.py --data_path data/test --model_path models/model.pth
-
+1. Preprocess the dataset ()
+2. 
 
 ## Results
 Summarize the results of the classification task. Include metrics such as accuracy, precision, recall, and F1-score, as well as any qualitative observations.
@@ -375,9 +393,6 @@ Summarize the results of the classification task. Include metrics such as accura
 2. Fastest training model (RESNET18) link on Google Drive: https://drive.google.com/file/d/1JDnPUlrsVBvTrylPDCF0VlzThSUgmD73/view?usp=sharing
 
 3. Medium accuracy and medium training time model (VGG16) link on Google Drive: https://drive.google.com/file/d/17wppOyLeqQOJFBpiTQShrbPvuHtHDjYu/view?usp=sharing
-
-## Example Image
-![Glomerulus Image](images/glomerulus_example.png)
 
 
 
