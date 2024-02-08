@@ -229,6 +229,17 @@ Hence, all the code I have provided are in the form of Google Collab notebooks, 
 
 Minor modifications could be made to make the same files run on HiperGator OOD.
 
+### For Baseine models and Homemade models only
+
+I have normalized the images using the following code. Note that I have used the same mean computed from the train set for normalizing the validation set and the test set.
+
+#### Normalize the data to speed up training
+mean = np.mean(x_train)
+std = np.std(x_train)
+x_train = (x_train-mean)/(std+1e-7)
+x_val = (x_val-mean)/(std+1e-7)
+x_test = (x_test-mean)/(std+1e-7)
+
 ### Data Augmentation
 In the baseline and homemade models, I am using a slight amount of data augmentation using the ImageDataGenerator from the Keras framework to make the model robust and generalizable. The data augmentation techniques are basically:
 
@@ -559,6 +570,8 @@ Again, this was not mentioned in the instructions nor was it clear from inspecti
 
 
 ## My trained model files
+
+### For the final model to be used in production, I would train a new model using VGG19 on all the data (i.e., train + val + test). However, since I will not be able to verify the accuracy or overfitting of such a trained model, I have left the final models to be the models I have trained on the train set only.
 
 1. Best (accuracy) model (VGG19) link on Google Drive: https://drive.google.com/file/d/1cxtIapDT08ral7OVUep0DbkCO-Rcb_5n/view?usp=sharing
 
