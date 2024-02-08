@@ -265,8 +265,8 @@ Reference: https://github.com/christianversloot/machine-learning-articles/blob/m
       Sclerotic      0.94      0.92      0.93       106
 
       accuracy                           0.98       577
-     macro avg       0.96      0.96      0.96       577
-  weighted avg       0.98      0.98      0.98       577
+      macro avg       0.96      0.96      0.96       577
+      weighted avg    0.98      0.98      0.98       577
 
 
 Since the task is medical diagnostics, we are interested in reducing the False Negatives in a balanced way with the False Positives.
@@ -281,12 +281,11 @@ We can achieve that by changing the threshold value.
                 precision    recall  f1-score   support
 
      Non-Sclerotic   0.99      0.96      0.97       471
-
      Sclerotic       0.83      0.95      0.89       106
 
-      accuracy                           0.96       577
+     accuracy                           0.96       577
      macro avg       0.91      0.96      0.93       577
-  weighted avg       0.96      0.96      0.96       577
+     weighted avg       0.96      0.96      0.96       577
   
 
 ### Homemade model for 224x224 images
@@ -305,12 +304,11 @@ We can achieve that by changing the threshold value.
 
 
      Non-Sclerotic   0.98      0.99      0.98       471
-
      Sclerotic       0.94      0.92      0.93       106
 
-      accuracy                           0.97       577
+     accuracy                           0.97       577
      macro avg       0.96      0.95      0.96       577
-  weighted avg       0.97      0.97      0.97       577
+     weighted avg    0.97      0.97      0.97       577
   
 Since the task is medical diagnostics, we are interested in reducing the False Negatives in a balanced way with the False Positives.
 We can achieve that by changing the threshold value.
@@ -327,9 +325,9 @@ We can achieve that by changing the threshold value.
 
      Sclerotic       0.89      0.96      0.93       106
 
-      accuracy                           0.97       577
+     accuracy                           0.97       577
      macro avg       0.94      0.97      0.96       577
-  weighted avg       0.97      0.97      0.97       577
+     weighted avg    0.97      0.97      0.97       577
 
 
 ## Large Pretrained Models
@@ -369,7 +367,7 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 
 ### Unfrozen: I changed the last Dense layer for binary classification and tuned the entire architecture on the dataset
 
-1. ResNet18: This large model has the fastest training time but lowest test accuracy
+#### 1. ResNet18: This large model has the fastest training time but lowest test accuracy
    a. Number of epochs: 5
    b. GPU time for training: 134.96 seconds 
 
@@ -377,7 +375,7 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 ![resnet18_frozen](images/large_models/unfrozen/ResNet18_5epochs_confusion_matrix.png)
 ![resnet18_frozen](images/large_models/unfrozen/ResNet18_5epochs_roc_auc.png)  
    
-2. VGG16: This model had a medium training time and medium test accuracy
+#### 2. VGG16: This model had a medium training time and medium test accuracy
    a. Number of epochs: 9
    b. GPU time for training: 767.62 seconds
 
@@ -385,7 +383,7 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 ![vgg16_frozen](images/large_models/unfrozen/VGG16_9epochs_ver2_confusion_matrix.png)
 ![vgg16_frozen](images/large_models/unfrozen/VGG16_9epochs_ver2_roc_auc.png)
    
-3. VGG19: This model had the highest training time and highest test accuracy. The False Negatives are zero in this particular train-val-test split.
+#### 3. VGG19: This model had the highest training time and highest test accuracy. The False Negatives are zero in this particular train-val-test split.
    a. Number of epochs: 9
    b. GPU time for training: 845.42 seconds
 
@@ -400,7 +398,7 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 
 ## Wrong Predictions (or classifications) for unfrozen Large models
 
-1. RESNET18
+#### 1. RESNET18
 
 ![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction1.png)
 ![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction2.png)
@@ -408,14 +406,14 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 ![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction4.png)
 ![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction5.png)
 
-3. VGG16
+#### 2. VGG16
 
 ![vgg16_wrong](images/Wrong_Predictions/vgg16/vgg16wrongprediction1.png)
 ![vgg16_wrong](images/Wrong_Predictions/vgg16/vgg16wrongprediction2.png)
 ![vgg16_wrong](images/Wrong_Predictions/vgg16/vgg16wrongprediction3.png)
 ![vgg16_wrong](images/Wrong_Predictions/vgg16/vgg16wrongprediction4.png)
 
-4. VGG19
+#### 3. VGG19
 
 ![vgg19_wrong](images/Wrong_Predictions/vgg19/vgg19wrongprediction1.png)
 ![vgg19_wrong](images/Wrong_Predictions/vgg19/vgg19wrongprediction2.png)
