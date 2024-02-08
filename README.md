@@ -337,13 +337,14 @@ We can achieve that by changing the threshold value.
 I trained 3 large models pretrained on ImageNet. 
 
 ### Frozen: I changed the last Dense layer for binary classification
-1. ResNet18: This large model has the fastest training time
+
+#### 1. ResNet18: This large model has the fastest training time
 
 ![resnet18_frozen](images/large_models/frozen/resnet18_frozen_100epochs.png)
 ![resnet18_frozen](images/large_models/frozen/ResNet18_frozen_100epochs_confusion_matrix.png)
 ![resnet18_frozen](images/large_models/frozen/ResNet18_frozen_100epochs_roc_auc.png)
 
-#### I tried lowering the learning rate but there was not much difference.
+##### I tried lowering the learning rate but there was not much difference.
 
 Lowered Learning Rate
 ![resnet18_frozen](images/large_models/frozen/resnet18frozen100epochs_lowerlearningrate.png)
@@ -351,29 +352,41 @@ Lowered Learning Rate
 ![resnet18_frozen](images/large_models/frozen/ResNet18_frozen_100epochs_LowerLearningRate_roc_auc.png)
 
 
-3. VGG16: This model had a medium training time
+#### 2. VGG16: This model had a medium training time
 
 ![vgg16_frozen](images/large_models/frozen/vgg16frozen50epochs.png)
 ![vgg16_frozen](images/large_models/frozen/VGG16_Frozen_50epochs_confusion_matrix.png)
 ![vgg16_frozen](images/large_models/frozen/VGG16_Frozen_50epochs_roc_auc.png)
 
-4. VGG19: This model had the highest training time
+#### 3. VGG19: This model had the highest training time
 
 ![vgg19_frozen](images/large_models/frozen/vgg19frozen50epochs.png)
 ![vgg19_frozen](images/large_models/frozen/VGG19_Frozen_50epochs_confusion_matrix.png)
 ![vgg19_frozen](images/large_models/frozen/VGG19_Frozen_50epochs_roc_auc.png)
 
-All 3 frozen models were not able to get up to 95% training accuracy.
+VGG16 and VGG19 were not able to get above 95% training accuracy when frozen.
+Only ResNet18 was able to get above 95% training accuracy when frozen, but not above 97% training accuracy.
 
 ### Unfrozen: I changed the last Dense layer for binary classification and tuned the entire architecture on the dataset
 
-1. ResNet18: This large model has the fastest training time
+1. ResNet18: This large model has the fastest training time but lowest test accuracy
 
-  
+![resnet18_frozen](images/large_models/unfrozen/resnet18_all_layers_5epochs.png)
+![resnet18_frozen](images/large_models/unfrozen/ResNet18_5epochs_confusion_matrix.png)
+![resnet18_frozen](images/large_models/unfrozen/ResNet18_5epochs_roc_auc.png)  
    
-3. VGG16: This model had a medium training time
+2. VGG16: This model had a medium training time and medium test accuracy
+
+![vgg16_frozen](images/large_models/unfrozen/vgg16_unfrozen_9epochs_ver2.png)
+![vgg16_frozen](images/large_models/unfrozen/VGG16_9epochs_ver2_confusion_matrix.png)
+![vgg16_frozen](images/large_models/unfrozen/VGG16_9epochs_ver2_roc_auc.png)
    
-4. VGG19: This model had the highest training time
+3. VGG19: This model had the highest training time and highest test accuracy. The False Negatives are zero in this particular train-val-test split.
+
+![vgg19_frozen](images/large_models/unfrozen/vgg19_all_layers_9epochs_ver2.png)
+![vgg19_frozen](images/large_models/unfrozen/VGG19_9epochs_ver2_confusion_matrix.png)
+![vgg19_frozen](images/large_models/unfrozen/VGG19_9epochs_ver2_roc_auc.png)
+
 
 
 ## Instructions for Reproducibility
