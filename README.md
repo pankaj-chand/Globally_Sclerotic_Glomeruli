@@ -77,7 +77,12 @@ Ultimately, it's recommended to experiment with both padding strategies and eval
 
 ### Images from the folder 2_WhitePad_OR_ZeroPad
 
-![Imbalanced-Data](images/Imbalanced_Data.png)
+![zero-padding_128x128_20 epochs](2_WhitePad_OR_ZeroPad/ZeroPad_128_20_graphs.png)
+![zero-padding_128x128_20 epochs_cm](2_WhitePad_OR_ZeroPad/ZeroPad_128_20_confusion_matrix.png)
+![white-padding_128x128_20 epochs](2_WhitePad_OR_ZeroPad/WhitePad_128_20_graphs.png)
+![white-padding_128x128_20 epochs_cm](2_WhitePad_OR_ZeroPad/WhitePad_128_20_confusion_matrix.png)
+
+
 
 
 ## Approach
@@ -90,11 +95,12 @@ Subsequently, I used a simplified version of the approach in the following publi
 
 Step 1. Repeatedly add a Dense layer until the model overfits.
 
-Step 2. Replace the largest Dense layer with a CNN block
+Step 2. Replace the largest Dense layer with a Convolutional block
 
 Step 3. Go back to step 1 and repeat until there is no further improvement.
 
 ## Implementation
+
 Provide details on how the code is organized and structured in the repository. Explain the purpose of each file or directory and how they contribute to the project.
 
 ## Homemade Models
