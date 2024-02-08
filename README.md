@@ -111,7 +111,7 @@ I made a baseline model using only one neuron with sigmoid activation function, 
 
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/e6e4a4f2-494c-48de-8d4c-f4a2132bc4ed)
 ![model1](images/baseline_models/Model1_NoHiddenLayers.png)
-#### No Hidden Layers (49152 = 128x128x3)
+#### No Hidden Layers (49152 = 128x128x3) Test result: 89.601 loss: 0.244
 
 Subsequently, I used a simplified version of the approach in the following publication.
 
@@ -129,33 +129,33 @@ Step 5. Go back to step 1 and repeat until there is no further improvement.
 
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/43e71896-77a6-4cb4-b71c-482d840827f4)
 ![model2](images/baseline_models/Model2.png)
-#### One Large Dense Hidden Layer (49152 = 128x128x3)
+#### One Large Dense Hidden Layer (49152 = 128x128x3) Test result: 92.721 loss: 0.224
 
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/9c69368f-8217-4331-889a-a92b9e955a30)
 ![model3](images/baseline_models/Model3.png)
-#### One Small Dense Hidden Layer (49152 = 128x128x3)
+#### One Small Dense Hidden Layer (49152 = 128x128x3) Test result: 91.854 loss: 0.213
 
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/f0343e3f-a801-43cd-92a1-977c444da521)
 ![model4](images/baseline_models/Model4.png)
-#### Two Large Dense Hidden Layers (49152 = 128x128x3)
+#### Two Large Dense Hidden Layers (49152 = 128x128x3) Test result: 92.721 loss: 0.166
 
 Since the architecture was not able to learn enough, I added a CNN layer.
 
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/405b1e74-6c7f-44e7-b39d-580afdbdf3d4)
 ![model5](images/baseline_models/Model5.png)
-#### One CNN Layer and Two Large Dense Hidden Layers (49152 = 128x128x3)
+#### One CNN Layer and Two Large Dense Hidden Layers (49152 = 128x128x3) Test result: 96.534 loss: 0.102
 
 The model is learning more. So, I added another Dense layer to make it overfit.
 
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/3d7d22be-a45f-4c5a-aec1-3b4467626118)
 ![model6](images/baseline_models/Model6.png)
-#### One CNN Layer and Three Dense Hidden Layers (49152 = 128x128x3)
+#### One CNN Layer and Three Dense Hidden Layers (49152 = 128x128x3) Test result: 96.534 loss: 0.107
 
 I added another Convolutional layer to make the model learn more features.
 
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/333e018e-5068-43ea-bbbf-3a9a4da4cfb2)
 ![model7](images/baseline_models/Model7.png)
-
+#### Two CNN Layers (layer 2 has double the filters) and Three Dense Hidden Layers (49152 = 128x128x3) Test result: 96.187 loss: 0.101
 
 ## Implementation
 
