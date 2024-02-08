@@ -245,6 +245,65 @@ ReLU activating networks, which are pretty much the standard ones today, benefit
 
 Reference: https://github.com/christianversloot/machine-learning-articles/blob/main/he-xavier-initialization-activation-functions-choose-wisely.md
 
+### Homemade model for 128x128 images
+
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/8938f9d0-a226-41de-a19e-401fea219449)
+![model12](images/homemade_models/HomemadeModel1_128x128.png)
+![model12](images/homemade_models/Homemade_Model1_128x128_roc.png)
+
+#### With a thresold of 0.5 on the value of the sigmoid function
+
+![model12](images/homemade_models/Homemade_Model1_128x128_CM1beforeidealthreshold)
+
+##### Metrics
+
+               precision    recall  f1-score   support
+
+Non-Sclerotic        0.98      0.99      0.99       471
+     Sclerotic       0.94      0.92      0.93       106
+
+      accuracy                           0.98       577
+     macro avg       0.96      0.96      0.96       577
+  weighted avg       0.98      0.98      0.98       577
+
+
+Since the task is medical diagnostics, we are interested in reducing the False Negatives in a balanced way with the False Positives.
+We can achieve that by changing the threshold value.
+
+#### After changing the threshold to 0.207789, the False Negatives and False Positives are more balanced.
+
+![model12](images/homemade_models/Homemade_Model1_128x128_CM1afteridealthreshold)
+
+##### Improved Metrics
+
+                precision    recall  f1-score   support
+
+Non-Sclerotic        0.99      0.96      0.97       471
+     Sclerotic       0.83      0.95      0.89       106
+
+      accuracy                           0.96       577
+     macro avg       0.91      0.96      0.93       577
+  weighted avg       0.96      0.96      0.96       577
+  
+
+### Homemade model for 224x224 images
+
+![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/8938f9d0-a226-41de-a19e-401fea219449)
+![model12](images/homemade_models/HomemadeModel1_224x224.png)
+![model12](images/homemade_models/Homemade_Model1_224x224_roc.png)
+
+#### With a thresold of 0.5 on the value of the sigmoid function
+
+![model12](images/homemade_models/Homemade_Model1_224x224_CM1beforeidealthreshold)
+
+Since the task is medical diagnostics, we are interested in reducing the False Negatives in a balanced way with the False Positives.
+We can achieve that by changing the threshold value.
+
+#### After changing the threshold to 0.207789, the False Negatives and False Positives are more balanced.
+
+![model12](images/homemade_models/Homemade_Model1_224x224_CM1afteridealthreshold)
+
+
 ## Large Pretrained Models
 
 
