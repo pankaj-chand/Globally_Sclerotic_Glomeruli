@@ -5,10 +5,10 @@ Deep learning for binary classification of globally sclerotic glomeruli from
 This project focuses on the binary classification of PAS stained microscopy images of Kidney Glomerulus using deep learning techniques. Glomerulus images are classified into two categories: Non-Globally Sclerotic (label 0) and Globally Sclerotic (label 1).
 
 ## Table of Contents
-1. [Setting a side a Test set](#test-set)
+1. [Setting aside a Test set](#test-set)
 2. [Inspection of the data](#inspection)
 3. [Preprocessing of the data](#preprocessing)
-4. [Padding](#white-padding)
+4. [Padding](#type-of-padding)
 5. [Approach and baseline models](#approach)
 6. [Implementation](#implementation)
 7. [Homemade CNN models 97+% accuracy](#homemade-models)
@@ -19,9 +19,10 @@ This project focuses on the binary classification of PAS stained microscopy imag
 ## Test Set
 
 Usually, I would first split the data and set a test set aside until the models were trained.
-However, since it was mentioned that a hold out set has already been created, I split the data and set the test set aside in my notebook code before starting to train the models.
+However, since it was mentioned that a hold out set has already been created by Dr. Paul and Dr. Naglah, so I split the data and set my own test set aside in my notebook code after inspecting the data, but before starting to train the models. The data was split pseudo-randomly using five different seeds to repeat the experiments five times and mimic Scikit-Learn's 5-Fold Cross Validation. However, only one of the seeds is given in the code.
 
 ## Inspection
+
 Caveat: It is possible that multiple image files in the dataset come from a single patient. This was not mentioned in the instructions nor was it clear from inspecting the dataset. Hence, I treated each image file individually.
 
 I found that the images in the dataset were already cropped as a rectangle to include only the glomerulus.
@@ -44,7 +45,7 @@ I resized the resulting images to common sizes such as: 128x128 and 224x224 (for
 
 My code ensures that the glomerulus in the image is centered in both the Zero padding and White Padding variants.
 
-## White-Padding
+## Type of Padding
 
 I needed to know whether to progress with the resized images containing white-padding or zero-padding.
 
@@ -72,7 +73,6 @@ In the context of analyzing PAS stained images of kidney glomerulus, the choice 
 
 Ultimately, it's recommended to experiment with both padding strategies and evaluate their performance on your specific deep learning task to determine which one works best for your dataset and model architecture.
 
-
 ## Approach
 
 I made a baseline model using only one neuron with sigmoid activation function, and no hidden layers. This was basically Logistic Regression, and could only model linear relationships in the data. Yet, it got 90% accuracy on the test set.
@@ -87,10 +87,8 @@ Step 2. Replace the largest Dense layer with a CNN block
 
 Step 3. Go back to step 1 and repeat until there is no further improvement.
 
-
 ## Implementation
 Provide details on how the code is organized and structured in the repository. Explain the purpose of each file or directory and how they contribute to the project.
-
 
 ## Homemade Models
 
