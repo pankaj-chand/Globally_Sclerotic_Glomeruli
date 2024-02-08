@@ -304,7 +304,7 @@ We can achieve that by changing the threshold value.
             precision    recall  f1-score   support
 
 
-Non-Sclerotic        0.98      0.99      0.98       471
+     Non-Sclerotic   0.98      0.99      0.98       471
 
      Sclerotic       0.94      0.92      0.93       106
 
@@ -321,10 +321,9 @@ We can achieve that by changing the threshold value.
 
 ##### Improved Metrics
 
-     precision    recall  f1-score   support
+            precision    recall  f1-score   support
 
-
-Non-Sclerotic        0.99      0.97      0.98       471
+     Non-Sclerotic   0.99      0.97      0.98       471
 
      Sclerotic       0.89      0.96      0.93       106
 
@@ -347,22 +346,22 @@ I trained 3 large models pretrained on ImageNet.
 #### I tried lowering the learning rate but there was not much difference.
 
 Lowered Learning Rate
-![resnet18_frozen](images/large_models/frozen/resnet18_frozen_100epochs_lowerlearningrate.png)
-![resnet18_frozen](images/large_models/frozen/ResNet18_frozen_100epochs_confusion_matrix_lowerlearningrate.png)
-![resnet18_frozen](images/large_models/frozen/ResNet18_frozen_100epochs_roc_auc_lowerlearningrate.png)
+![resnet18_frozen](images/large_models/frozen/resnet18frozen100epochs_lowerlearningrate.png)
+![resnet18_frozen](images/large_models/frozen/ResNet18_Frozen_100epochs_LowerLearningRate_confusion_matrix.png)
+![resnet18_frozen](images/large_models/frozen/ResNet18_frozen_100epochs_LowerLearningRate_roc_auc.png)
 
 
 3. VGG16: This model had a medium training time
 
 ![vgg16_frozen](images/large_models/frozen/vgg16frozen50epochs.png)
-![vgg16_frozen](images/large_models/frozen/VGG16_frozen_50epochs_confusion_matrix.png)
-![vgg16_frozen](images/large_models/frozen/VGG16_frozen_50epochs_roc_auc.png)
+![vgg16_frozen](images/large_models/frozen/VGG16_Frozen_50epochs_confusion_matrix.png)
+![vgg16_frozen](images/large_models/frozen/VGG16_Frozen_50epochs_roc_auc.png)
 
 4. VGG19: This model had the highest training time
 
 ![vgg19_frozen](images/large_models/frozen/vgg19frozen50epochs.png)
-![vgg19_frozen](images/large_models/frozen/VGG19_frozen_50epochs_confusion_matrix.png)
-![vgg19_frozen](images/large_models/frozen/VGG19_frozen_50epochs_roc_auc.png)
+![vgg19_frozen](images/large_models/frozen/VGG19_Frozen_50epochs_confusion_matrix.png)
+![vgg19_frozen](images/large_models/frozen/VGG19_Frozen_50epochs_roc_auc.png)
 
 All 3 frozen models were not able to get up to 95% training accuracy.
 
