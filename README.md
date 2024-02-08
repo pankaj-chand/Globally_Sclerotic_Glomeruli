@@ -99,7 +99,7 @@ Since I had already built a PyTorch model with the glomerulus images that Sam ha
 
 Conclusion: Except for the sudden dip in the middle of the last validation curve, I found that the white padding provided more stable training and validation curves. Hence, I decided to continue using only the White-Padded version of pre-processed images.
 
-Since I am using Google Collab Pro not HiperGator, usable RAM is around 20 GB, and so I decided not to use the 512x512 resized images due to low RAM.
+Since I am using Google Collab Pro, not HiperGator, usable RAM is around 20 GB, and so I decided not to use the 512x512 resized images due to low RAM.
 
 The preliminary results show that 128x128 sized images were providing better results than the 224x224 images. Since I was already getting 97% accuracy with a simple model, I thought there would be no point in using large architectures or pretrained models that prefer 224x224 sized images. However, later I decided to use 224x224 pixel images with the large architectures.
 
@@ -135,7 +135,8 @@ Step 3. Go back to step 1 and repeat until there is no further improvement.
 ![model4](images/baseline_models/Model4.png)
 #### Two Large Dense Hidden Layers (49152 = 128x128x3)
 
-Since the architecture was not able to learn enough, I added a CNN layer
+Since the architecture was not able to learn enough, I added a CNN layer.
+
 ![image](https://github.com/pankaj-chand/Globally_Sclerotic_Glomeruli/assets/49002748/405b1e74-6c7f-44e7-b39d-580afdbdf3d4)
 ![model5](images/baseline_models/Model5.png)
 #### One CNN Layer and Two Large Dense Hidden Layers (49152 = 128x128x3)
