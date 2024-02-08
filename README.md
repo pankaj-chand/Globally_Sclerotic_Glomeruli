@@ -33,13 +33,19 @@ Caveat: It is possible that multiple image files in the dataset come from a sing
 
 ### Dataset:
 
+Dataset: PNG colored RGBA images
+
+Non_Globally_Sclerotic: 4704 images
+
+Globally_Sclerotic: 1054 images
+
+Total images: 5758 images
+
 a. I found that the images in the dataset were already cropped as a rectangle to include only the glomerulus, i.e, the region of interest.
 
 b. Images were of different sizes, and all were not square.
 
-c. There were 5758 images in the entire dataset.
-
-d. There was an imbalance of more than 1:4 with regard to the Positive:Negative class in the dataset as shown in the following figure. I would address the imbalance only if required after seeing the performance of the trained models.
+c. There was an imbalance of more than 1:4 with regard to the Positive:Negative class in the dataset as shown in the following figure. I would address the imbalance only if required after seeing the performance of the trained models.
 
 ![Imbalanced-Data](images/Imbalanced_Data.png)
 
