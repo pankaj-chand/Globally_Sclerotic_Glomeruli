@@ -401,6 +401,7 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 ## Wrong Predictions (or classifications) for unfrozen Large models
 
 1. RESNET18
+
 ![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction1.png)
 ![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction2.png)
 ![resnet_wrong](images/Wrong_Predictions/resnet18/resnet18wrongprediction3.png)
@@ -419,6 +420,11 @@ Only ResNet18 was able to get above 95% training accuracy when frozen, but not a
 ![vgg19_wrong](images/Wrong_Predictions/vgg19/vgg19wrongprediction1.png)
 ![vgg19_wrong](images/Wrong_Predictions/vgg19/vgg19wrongprediction2.png)
 ![vgg19_wrong](images/Wrong_Predictions/vgg19/vgg19wrongprediction3.png)
+
+### Note that the following two images have been predicted wrong by all three models
+
+![vgg19_wrong](images/Wrong_Predictions/vgg19/vgg19wrongprediction1.png)
+![vgg19_wrong](images/Wrong_Predictions/vgg19/vgg19wrongprediction2.png)
 
 
 ## Instructions for Reproducibility
